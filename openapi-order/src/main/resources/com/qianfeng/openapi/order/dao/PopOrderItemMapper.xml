@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.openapi.order.dao.PopOrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.openapi.order.pojo.PopOrderItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="vender_id" jdbcType="BIGINT" property="venderId" />
+    <result column="sku_id" jdbcType="BIGINT" property="skuId" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="num" jdbcType="BIGINT" property="num" />
+    <result column="warranty" jdbcType="VARCHAR" property="warranty" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="give_point" jdbcType="BIGINT" property="givePoint" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="ware_id" jdbcType="BIGINT" property="wareId" />
+    <result column="outer_id" jdbcType="VARCHAR" property="outerId" />
+    <result column="item_num" jdbcType="VARCHAR" property="itemNum" />
+    <result column="item_ext" jdbcType="VARCHAR" property="itemExt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_id, vender_id, sku_id, sku_name, num, warranty, price, give_point, created, 
+    modified, ware_id, outer_id, item_num, item_ext
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pop_order_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pop_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pop_order_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItemExample">
+    delete from pop_order_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItem">
+    insert into pop_order_item (id, order_id, vender_id, 
+      sku_id, sku_name, num, 
+      warranty, price, give_point, 
+      created, modified, ware_id, 
+      outer_id, item_num, item_ext
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{venderId,jdbcType=BIGINT}, 
+      #{skuId,jdbcType=BIGINT}, #{skuName,jdbcType=VARCHAR}, #{num,jdbcType=BIGINT}, 
+      #{warranty,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{givePoint,jdbcType=BIGINT}, 
+      #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, #{wareId,jdbcType=BIGINT}, 
+      #{outerId,jdbcType=VARCHAR}, #{itemNum,jdbcType=VARCHAR}, #{itemExt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItem">
+    insert into pop_order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="venderId != null">
+        vender_id,
+      </if>
+      <if test="skuId != null">
+        sku_id,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="warranty != null">
+        warranty,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="givePoint != null">
+        give_point,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="wareId != null">
+        ware_id,
+      </if>
+      <if test="outerId != null">
+        outer_id,
+      </if>
+      <if test="itemNum != null">
+        item_num,
+      </if>
+      <if test="itemExt != null">
+        item_ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=BIGINT},
+      </if>
+      <if test="warranty != null">
+        #{warranty,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="givePoint != null">
+        #{givePoint,jdbcType=BIGINT},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wareId != null">
+        #{wareId,jdbcType=BIGINT},
+      </if>
+      <if test="outerId != null">
+        #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNum != null">
+        #{itemNum,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExt != null">
+        #{itemExt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItemExample" resultType="java.lang.Long">
+    select count(*) from pop_order_item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pop_order_item
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.venderId != null">
+        vender_id = #{record.venderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuId != null">
+        sku_id = #{record.skuId,jdbcType=BIGINT},
+      </if>
+      <if test="record.skuName != null">
+        sku_name = #{record.skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=BIGINT},
+      </if>
+      <if test="record.warranty != null">
+        warranty = #{record.warranty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.givePoint != null">
+        give_point = #{record.givePoint,jdbcType=BIGINT},
+      </if>
+      <if test="record.created != null">
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modified != null">
+        modified = #{record.modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wareId != null">
+        ware_id = #{record.wareId,jdbcType=BIGINT},
+      </if>
+      <if test="record.outerId != null">
+        outer_id = #{record.outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemNum != null">
+        item_num = #{record.itemNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemExt != null">
+        item_ext = #{record.itemExt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pop_order_item
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      vender_id = #{record.venderId,jdbcType=BIGINT},
+      sku_id = #{record.skuId,jdbcType=BIGINT},
+      sku_name = #{record.skuName,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=BIGINT},
+      warranty = #{record.warranty,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=BIGINT},
+      give_point = #{record.givePoint,jdbcType=BIGINT},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      modified = #{record.modified,jdbcType=TIMESTAMP},
+      ware_id = #{record.wareId,jdbcType=BIGINT},
+      outer_id = #{record.outerId,jdbcType=VARCHAR},
+      item_num = #{record.itemNum,jdbcType=VARCHAR},
+      item_ext = #{record.itemExt,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItem">
+    update pop_order_item
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        vender_id = #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="skuId != null">
+        sku_id = #{skuId,jdbcType=BIGINT},
+      </if>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=BIGINT},
+      </if>
+      <if test="warranty != null">
+        warranty = #{warranty,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="givePoint != null">
+        give_point = #{givePoint,jdbcType=BIGINT},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wareId != null">
+        ware_id = #{wareId,jdbcType=BIGINT},
+      </if>
+      <if test="outerId != null">
+        outer_id = #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNum != null">
+        item_num = #{itemNum,jdbcType=VARCHAR},
+      </if>
+      <if test="itemExt != null">
+        item_ext = #{itemExt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.openapi.order.pojo.PopOrderItem">
+    update pop_order_item
+    set order_id = #{orderId,jdbcType=BIGINT},
+      vender_id = #{venderId,jdbcType=BIGINT},
+      sku_id = #{skuId,jdbcType=BIGINT},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      num = #{num,jdbcType=BIGINT},
+      warranty = #{warranty,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      give_point = #{givePoint,jdbcType=BIGINT},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      ware_id = #{wareId,jdbcType=BIGINT},
+      outer_id = #{outerId,jdbcType=VARCHAR},
+      item_num = #{itemNum,jdbcType=VARCHAR},
+      item_ext = #{itemExt,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.openapi.order.dao.CouponDetailMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.openapi.order.pojo.CouponDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="vender_id" jdbcType="BIGINT" property="venderId" />
+    <result column="rf_code" jdbcType="VARCHAR" property="rfCode" />
+    <result column="coupon_type" jdbcType="BIGINT" property="couponType" />
+    <result column="coupon_price" jdbcType="BIGINT" property="couponPrice" />
+    <result column="use_date" jdbcType="TIMESTAMP" property="useDate" />
+    <result column="operate_user" jdbcType="VARCHAR" property="operateUser" />
+    <result column="yn" jdbcType="BIGINT" property="yn" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_id, vender_id, rf_code, coupon_type, coupon_price, use_date, operate_user, 
+    yn
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.openapi.order.pojo.CouponDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from coupon_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coupon_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from coupon_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.openapi.order.pojo.CouponDetailExample">
+    delete from coupon_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.openapi.order.pojo.CouponDetail">
+    insert into coupon_detail (id, order_id, vender_id, 
+      rf_code, coupon_type, coupon_price, 
+      use_date, operate_user, yn
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{venderId,jdbcType=BIGINT}, 
+      #{rfCode,jdbcType=VARCHAR}, #{couponType,jdbcType=BIGINT}, #{couponPrice,jdbcType=BIGINT}, 
+      #{useDate,jdbcType=TIMESTAMP}, #{operateUser,jdbcType=VARCHAR}, #{yn,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.openapi.order.pojo.CouponDetail">
+    insert into coupon_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="venderId != null">
+        vender_id,
+      </if>
+      <if test="rfCode != null">
+        rf_code,
+      </if>
+      <if test="couponType != null">
+        coupon_type,
+      </if>
+      <if test="couponPrice != null">
+        coupon_price,
+      </if>
+      <if test="useDate != null">
+        use_date,
+      </if>
+      <if test="operateUser != null">
+        operate_user,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="rfCode != null">
+        #{rfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null">
+        #{couponType,jdbcType=BIGINT},
+      </if>
+      <if test="couponPrice != null">
+        #{couponPrice,jdbcType=BIGINT},
+      </if>
+      <if test="useDate != null">
+        #{useDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUser != null">
+        #{operateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.openapi.order.pojo.CouponDetailExample" resultType="java.lang.Long">
+    select count(*) from coupon_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update coupon_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.venderId != null">
+        vender_id = #{record.venderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.rfCode != null">
+        rf_code = #{record.rfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponType != null">
+        coupon_type = #{record.couponType,jdbcType=BIGINT},
+      </if>
+      <if test="record.couponPrice != null">
+        coupon_price = #{record.couponPrice,jdbcType=BIGINT},
+      </if>
+      <if test="record.useDate != null">
+        use_date = #{record.useDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.operateUser != null">
+        operate_user = #{record.operateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yn != null">
+        yn = #{record.yn,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update coupon_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      vender_id = #{record.venderId,jdbcType=BIGINT},
+      rf_code = #{record.rfCode,jdbcType=VARCHAR},
+      coupon_type = #{record.couponType,jdbcType=BIGINT},
+      coupon_price = #{record.couponPrice,jdbcType=BIGINT},
+      use_date = #{record.useDate,jdbcType=TIMESTAMP},
+      operate_user = #{record.operateUser,jdbcType=VARCHAR},
+      yn = #{record.yn,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.openapi.order.pojo.CouponDetail">
+    update coupon_detail
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        vender_id = #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="rfCode != null">
+        rf_code = #{rfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="couponType != null">
+        coupon_type = #{couponType,jdbcType=BIGINT},
+      </if>
+      <if test="couponPrice != null">
+        coupon_price = #{couponPrice,jdbcType=BIGINT},
+      </if>
+      <if test="useDate != null">
+        use_date = #{useDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operateUser != null">
+        operate_user = #{operateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.openapi.order.pojo.CouponDetail">
+    update coupon_detail
+    set order_id = #{orderId,jdbcType=BIGINT},
+      vender_id = #{venderId,jdbcType=BIGINT},
+      rf_code = #{rfCode,jdbcType=VARCHAR},
+      coupon_type = #{couponType,jdbcType=BIGINT},
+      coupon_price = #{couponPrice,jdbcType=BIGINT},
+      use_date = #{useDate,jdbcType=TIMESTAMP},
+      operate_user = #{operateUser,jdbcType=VARCHAR},
+      yn = #{yn,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

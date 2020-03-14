@@ -1,0 +1,8 @@
+server:
+  port: 40000
+jwtconfig:
+  salt: qishimeiyouyan
+  expirationSeconds: 600
+  login: /login
+  header: Authorization
+  prefix: yangpeng

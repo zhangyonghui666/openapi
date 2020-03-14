@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="D:\Program Files\repository\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar"/>	
+  <context id="context1" >
+	<commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://114.242.146.109:8300/tx_warehouse?characterEncoding=utf-8" userId="root" password="qishimeiyoumima" />
+    <!-- pojo实体类 -->
+    <javaModelGenerator targetPackage="com.qianfeng.openapi.warehouse.pojo" targetProject="src/main/java" />
+    <!-- 映射文件放如资源目录 -->
+    <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources" />
+    <!-- mapper接口 -->
+    <javaClientGenerator targetPackage="com.qianfeng.openapi.warehouse.dao" targetProject="src/main/java" type="XMLMAPPER" />
+    
+    <table tableName="warehouse_info" domainObjectName="WarehouseInfo"></table>
+    <table tableName="warehouse_product" domainObjectName="WarehouseProduct"></table>
+    
+  </context>
+</generatorConfiguration>

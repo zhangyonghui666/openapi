@@ -1,0 +1,27 @@
+server:
+  port: 37001
+spring:
+  datasource:
+    username: root
+    password: qishimeiyoumima
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql:///warehouse
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: openapi-warehouse
+  redis:
+    host: redis.qfjava.cn
+    port: 8400
+    password: redis001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka
+swagger:
+  contact:
+    name: laowang
+    url: http://www.baidu.com
+    email: laowang@ba.com
+tx-lcn:
+  client:
+    manager-address: localhost:12345

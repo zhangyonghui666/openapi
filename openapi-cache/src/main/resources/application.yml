@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: openapi-cache
+  redis:
+    host: baseservice.qfjava.cn
+    port: 8400
+    password: redis001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka
+server:
+  port: 31000

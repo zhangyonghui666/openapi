@@ -1,0 +1,17 @@
+server:
+  port: 30000
+spring:
+  application:
+    name: openapi-eureka
+  security:
+    user:
+      name: qiangge
+      password: zdsg
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:30000/eureka
+  instance:
+    prefer-ip-address: true  #在管理页面显示服务的ip而不是机器名

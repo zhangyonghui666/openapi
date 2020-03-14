@@ -1,0 +1,9 @@
+server:
+  port: 33000
+spring:
+  application:
+    name: openapi-testservice
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka

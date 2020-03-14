@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.openapi.order.dao.PopOrderDataMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.openapi.order.pojo.PopOrderData">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="vender_id" jdbcType="BIGINT" property="venderId" />
+    <result column="id_company_branch" jdbcType="BIGINT" property="idCompanyBranch" />
+    <result column="cky2" jdbcType="VARCHAR" property="cky2" />
+    <result column="payment_type" jdbcType="BIGINT" property="paymentType" />
+    <result column="order_type" jdbcType="BIGINT" property="orderType" />
+    <result column="freight" jdbcType="BIGINT" property="freight" />
+    <result column="paysum_type" jdbcType="BIGINT" property="paysumType" />
+    <result column="state" jdbcType="BIGINT" property="state" />
+    <result column="yn" jdbcType="BIGINT" property="yn" />
+    <result column="order_sign" jdbcType="VARCHAR" property="orderSign" />
+    <result column="pop_send_pay" jdbcType="VARCHAR" property="popSendPay" />
+    <result column="order_create_date" jdbcType="TIMESTAMP" property="orderCreateDate" />
+    <result column="outbound_date" jdbcType="TIMESTAMP" property="outboundDate" />
+    <result column="order_completetime" jdbcType="TIMESTAMP" property="orderCompletetime" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="payment_confirm_time" jdbcType="TIMESTAMP" property="paymentConfirmTime" />
+    <result column="suppose_pay" jdbcType="BIGINT" property="supposePay" />
+    <result column="should_pay" jdbcType="BIGINT" property="shouldPay" />
+    <result column="deligood_type" jdbcType="BIGINT" property="deligoodType" />
+    <result column="id_shipmenttype" jdbcType="BIGINT" property="idShipmenttype" />
+    <result column="area_num" jdbcType="BIGINT" property="areaNum" />
+    <result column="cons_name" jdbcType="VARCHAR" property="consName" />
+    <result column="cons_address" jdbcType="VARCHAR" property="consAddress" />
+    <result column="cons_phone" jdbcType="VARCHAR" property="consPhone" />
+    <result column="cons_mobile_phone" jdbcType="VARCHAR" property="consMobilePhone" />
+    <result column="cons_email" jdbcType="VARCHAR" property="consEmail" />
+    <result column="cons_postcode" jdbcType="VARCHAR" property="consPostcode" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="ji_fen" jdbcType="BIGINT" property="jiFen" />
+    <result column="carrier_id" jdbcType="VARCHAR" property="carrierId" />
+    <result column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="order_sum" jdbcType="BIGINT" property="orderSum" />
+    <result column="invoice_title" jdbcType="VARCHAR" property="invoiceTitle" />
+    <result column="invoice_content_id" jdbcType="BIGINT" property="invoiceContentId" />
+    <result column="invoice_type" jdbcType="VARCHAR" property="invoiceType" />
+    <result column="seller_order_sum" jdbcType="BIGINT" property="sellerOrderSum" />
+    <result column="coupon_event_sum" jdbcType="BIGINT" property="couponEventSum" />
+    <result column="dispath_id" jdbcType="BIGINT" property="dispathId" />
+    <result column="dispath_name" jdbcType="VARCHAR" property="dispathName" />
+    <result column="province" jdbcType="BIGINT" property="province" />
+    <result column="city" jdbcType="BIGINT" property="city" />
+    <result column="county" jdbcType="BIGINT" property="county" />
+    <result column="town" jdbcType="BIGINT" property="town" />
+    <result column="invoice_state" jdbcType="BIGINT" property="invoiceState" />
+    <result column="balance_used" jdbcType="BIGINT" property="balanceUsed" />
+    <result column="cons_index" jdbcType="VARCHAR" property="consIndex" />
+    <result column="pin" jdbcType="VARCHAR" property="pin" />
+    <result column="customerip" jdbcType="VARCHAR" property="customerip" />
+    <result column="center_id" jdbcType="BIGINT" property="centerId" />
+    <result column="operator" jdbcType="BIGINT" property="operator" />
+    <result column="vat_info" jdbcType="VARCHAR" property="vatInfo" />
+    <result column="recommend_delivery_id" jdbcType="BIGINT" property="recommendDeliveryId" />
+    <result column="sales_pin" jdbcType="VARCHAR" property="salesPin" />
+    <result column="supplier" jdbcType="BIGINT" property="supplier" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_id, vender_id, id_company_branch, cky2, payment_type, order_type, freight, 
+    paysum_type, state, yn, order_sign, pop_send_pay, order_create_date, outbound_date, 
+    order_completetime, created, modified, payment_confirm_time, suppose_pay, should_pay, 
+    deligood_type, id_shipmenttype, area_num, cons_name, cons_address, cons_phone, cons_mobile_phone, 
+    cons_email, cons_postcode, remark, ji_fen, carrier_id, store_id, order_sum, invoice_title, 
+    invoice_content_id, invoice_type, seller_order_sum, coupon_event_sum, dispath_id, 
+    dispath_name, province, city, county, town, invoice_state, balance_used, cons_index, 
+    pin, customerip, center_id, operator, vat_info, recommend_delivery_id, sales_pin, 
+    supplier
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderDataExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pop_order_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pop_order_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pop_order_data
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderDataExample">
+    delete from pop_order_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.openapi.order.pojo.PopOrderData">
+    insert into pop_order_data (id, order_id, vender_id, 
+      id_company_branch, cky2, payment_type, 
+      order_type, freight, paysum_type, 
+      state, yn, order_sign, 
+      pop_send_pay, order_create_date, outbound_date, 
+      order_completetime, created, modified, 
+      payment_confirm_time, suppose_pay, should_pay, 
+      deligood_type, id_shipmenttype, area_num, 
+      cons_name, cons_address, cons_phone, 
+      cons_mobile_phone, cons_email, cons_postcode, 
+      remark, ji_fen, carrier_id, 
+      store_id, order_sum, invoice_title, 
+      invoice_content_id, invoice_type, seller_order_sum, 
+      coupon_event_sum, dispath_id, dispath_name, 
+      province, city, county, 
+      town, invoice_state, balance_used, 
+      cons_index, pin, customerip, 
+      center_id, operator, vat_info, 
+      recommend_delivery_id, sales_pin, supplier
+      )
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{venderId,jdbcType=BIGINT}, 
+      #{idCompanyBranch,jdbcType=BIGINT}, #{cky2,jdbcType=VARCHAR}, #{paymentType,jdbcType=BIGINT}, 
+      #{orderType,jdbcType=BIGINT}, #{freight,jdbcType=BIGINT}, #{paysumType,jdbcType=BIGINT}, 
+      #{state,jdbcType=BIGINT}, #{yn,jdbcType=BIGINT}, #{orderSign,jdbcType=VARCHAR}, 
+      #{popSendPay,jdbcType=VARCHAR}, #{orderCreateDate,jdbcType=TIMESTAMP}, #{outboundDate,jdbcType=TIMESTAMP}, 
+      #{orderCompletetime,jdbcType=TIMESTAMP}, #{created,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, 
+      #{paymentConfirmTime,jdbcType=TIMESTAMP}, #{supposePay,jdbcType=BIGINT}, #{shouldPay,jdbcType=BIGINT}, 
+      #{deligoodType,jdbcType=BIGINT}, #{idShipmenttype,jdbcType=BIGINT}, #{areaNum,jdbcType=BIGINT}, 
+      #{consName,jdbcType=VARCHAR}, #{consAddress,jdbcType=VARCHAR}, #{consPhone,jdbcType=VARCHAR}, 
+      #{consMobilePhone,jdbcType=VARCHAR}, #{consEmail,jdbcType=VARCHAR}, #{consPostcode,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{jiFen,jdbcType=BIGINT}, #{carrierId,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=BIGINT}, #{orderSum,jdbcType=BIGINT}, #{invoiceTitle,jdbcType=VARCHAR}, 
+      #{invoiceContentId,jdbcType=BIGINT}, #{invoiceType,jdbcType=VARCHAR}, #{sellerOrderSum,jdbcType=BIGINT}, 
+      #{couponEventSum,jdbcType=BIGINT}, #{dispathId,jdbcType=BIGINT}, #{dispathName,jdbcType=VARCHAR}, 
+      #{province,jdbcType=BIGINT}, #{city,jdbcType=BIGINT}, #{county,jdbcType=BIGINT}, 
+      #{town,jdbcType=BIGINT}, #{invoiceState,jdbcType=BIGINT}, #{balanceUsed,jdbcType=BIGINT}, 
+      #{consIndex,jdbcType=VARCHAR}, #{pin,jdbcType=VARCHAR}, #{customerip,jdbcType=VARCHAR}, 
+      #{centerId,jdbcType=BIGINT}, #{operator,jdbcType=BIGINT}, #{vatInfo,jdbcType=VARCHAR}, 
+      #{recommendDeliveryId,jdbcType=BIGINT}, #{salesPin,jdbcType=VARCHAR}, #{supplier,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.openapi.order.pojo.PopOrderData">
+    insert into pop_order_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="venderId != null">
+        vender_id,
+      </if>
+      <if test="idCompanyBranch != null">
+        id_company_branch,
+      </if>
+      <if test="cky2 != null">
+        cky2,
+      </if>
+      <if test="paymentType != null">
+        payment_type,
+      </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="paysumType != null">
+        paysum_type,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="yn != null">
+        yn,
+      </if>
+      <if test="orderSign != null">
+        order_sign,
+      </if>
+      <if test="popSendPay != null">
+        pop_send_pay,
+      </if>
+      <if test="orderCreateDate != null">
+        order_create_date,
+      </if>
+      <if test="outboundDate != null">
+        outbound_date,
+      </if>
+      <if test="orderCompletetime != null">
+        order_completetime,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="paymentConfirmTime != null">
+        payment_confirm_time,
+      </if>
+      <if test="supposePay != null">
+        suppose_pay,
+      </if>
+      <if test="shouldPay != null">
+        should_pay,
+      </if>
+      <if test="deligoodType != null">
+        deligood_type,
+      </if>
+      <if test="idShipmenttype != null">
+        id_shipmenttype,
+      </if>
+      <if test="areaNum != null">
+        area_num,
+      </if>
+      <if test="consName != null">
+        cons_name,
+      </if>
+      <if test="consAddress != null">
+        cons_address,
+      </if>
+      <if test="consPhone != null">
+        cons_phone,
+      </if>
+      <if test="consMobilePhone != null">
+        cons_mobile_phone,
+      </if>
+      <if test="consEmail != null">
+        cons_email,
+      </if>
+      <if test="consPostcode != null">
+        cons_postcode,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="jiFen != null">
+        ji_fen,
+      </if>
+      <if test="carrierId != null">
+        carrier_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="orderSum != null">
+        order_sum,
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title,
+      </if>
+      <if test="invoiceContentId != null">
+        invoice_content_id,
+      </if>
+      <if test="invoiceType != null">
+        invoice_type,
+      </if>
+      <if test="sellerOrderSum != null">
+        seller_order_sum,
+      </if>
+      <if test="couponEventSum != null">
+        coupon_event_sum,
+      </if>
+      <if test="dispathId != null">
+        dispath_id,
+      </if>
+      <if test="dispathName != null">
+        dispath_name,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="town != null">
+        town,
+      </if>
+      <if test="invoiceState != null">
+        invoice_state,
+      </if>
+      <if test="balanceUsed != null">
+        balance_used,
+      </if>
+      <if test="consIndex != null">
+        cons_index,
+      </if>
+      <if test="pin != null">
+        pin,
+      </if>
+      <if test="customerip != null">
+        customerip,
+      </if>
+      <if test="centerId != null">
+        center_id,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="vatInfo != null">
+        vat_info,
+      </if>
+      <if test="recommendDeliveryId != null">
+        recommend_delivery_id,
+      </if>
+      <if test="salesPin != null">
+        sales_pin,
+      </if>
+      <if test="supplier != null">
+        supplier,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="idCompanyBranch != null">
+        #{idCompanyBranch,jdbcType=BIGINT},
+      </if>
+      <if test="cky2 != null">
+        #{cky2,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        #{paymentType,jdbcType=BIGINT},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=BIGINT},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=BIGINT},
+      </if>
+      <if test="paysumType != null">
+        #{paysumType,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIGINT},
+      </if>
+      <if test="yn != null">
+        #{yn,jdbcType=BIGINT},
+      </if>
+      <if test="orderSign != null">
+        #{orderSign,jdbcType=VARCHAR},
+      </if>
+      <if test="popSendPay != null">
+        #{popSendPay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateDate != null">
+        #{orderCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outboundDate != null">
+        #{outboundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCompletetime != null">
+        #{orderCompletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentConfirmTime != null">
+        #{paymentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supposePay != null">
+        #{supposePay,jdbcType=BIGINT},
+      </if>
+      <if test="shouldPay != null">
+        #{shouldPay,jdbcType=BIGINT},
+      </if>
+      <if test="deligoodType != null">
+        #{deligoodType,jdbcType=BIGINT},
+      </if>
+      <if test="idShipmenttype != null">
+        #{idShipmenttype,jdbcType=BIGINT},
+      </if>
+      <if test="areaNum != null">
+        #{areaNum,jdbcType=BIGINT},
+      </if>
+      <if test="consName != null">
+        #{consName,jdbcType=VARCHAR},
+      </if>
+      <if test="consAddress != null">
+        #{consAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consPhone != null">
+        #{consPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consMobilePhone != null">
+        #{consMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consEmail != null">
+        #{consEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consPostcode != null">
+        #{consPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="jiFen != null">
+        #{jiFen,jdbcType=BIGINT},
+      </if>
+      <if test="carrierId != null">
+        #{carrierId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSum != null">
+        #{orderSum,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceTitle != null">
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContentId != null">
+        #{invoiceContentId,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceType != null">
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerOrderSum != null">
+        #{sellerOrderSum,jdbcType=BIGINT},
+      </if>
+      <if test="couponEventSum != null">
+        #{couponEventSum,jdbcType=BIGINT},
+      </if>
+      <if test="dispathId != null">
+        #{dispathId,jdbcType=BIGINT},
+      </if>
+      <if test="dispathName != null">
+        #{dispathName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=BIGINT},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=BIGINT},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=BIGINT},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceState != null">
+        #{invoiceState,jdbcType=BIGINT},
+      </if>
+      <if test="balanceUsed != null">
+        #{balanceUsed,jdbcType=BIGINT},
+      </if>
+      <if test="consIndex != null">
+        #{consIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="pin != null">
+        #{pin,jdbcType=VARCHAR},
+      </if>
+      <if test="customerip != null">
+        #{customerip,jdbcType=VARCHAR},
+      </if>
+      <if test="centerId != null">
+        #{centerId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="vatInfo != null">
+        #{vatInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendDeliveryId != null">
+        #{recommendDeliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="salesPin != null">
+        #{salesPin,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        #{supplier,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.openapi.order.pojo.PopOrderDataExample" resultType="java.lang.Long">
+    select count(*) from pop_order_data
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pop_order_data
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.venderId != null">
+        vender_id = #{record.venderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.idCompanyBranch != null">
+        id_company_branch = #{record.idCompanyBranch,jdbcType=BIGINT},
+      </if>
+      <if test="record.cky2 != null">
+        cky2 = #{record.cky2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentType != null">
+        payment_type = #{record.paymentType,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderType != null">
+        order_type = #{record.orderType,jdbcType=BIGINT},
+      </if>
+      <if test="record.freight != null">
+        freight = #{record.freight,jdbcType=BIGINT},
+      </if>
+      <if test="record.paysumType != null">
+        paysum_type = #{record.paysumType,jdbcType=BIGINT},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=BIGINT},
+      </if>
+      <if test="record.yn != null">
+        yn = #{record.yn,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderSign != null">
+        order_sign = #{record.orderSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.popSendPay != null">
+        pop_send_pay = #{record.popSendPay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCreateDate != null">
+        order_create_date = #{record.orderCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outboundDate != null">
+        outbound_date = #{record.outboundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderCompletetime != null">
+        order_completetime = #{record.orderCompletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.created != null">
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modified != null">
+        modified = #{record.modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentConfirmTime != null">
+        payment_confirm_time = #{record.paymentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.supposePay != null">
+        suppose_pay = #{record.supposePay,jdbcType=BIGINT},
+      </if>
+      <if test="record.shouldPay != null">
+        should_pay = #{record.shouldPay,jdbcType=BIGINT},
+      </if>
+      <if test="record.deligoodType != null">
+        deligood_type = #{record.deligoodType,jdbcType=BIGINT},
+      </if>
+      <if test="record.idShipmenttype != null">
+        id_shipmenttype = #{record.idShipmenttype,jdbcType=BIGINT},
+      </if>
+      <if test="record.areaNum != null">
+        area_num = #{record.areaNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.consName != null">
+        cons_name = #{record.consName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consAddress != null">
+        cons_address = #{record.consAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consPhone != null">
+        cons_phone = #{record.consPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consMobilePhone != null">
+        cons_mobile_phone = #{record.consMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consEmail != null">
+        cons_email = #{record.consEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consPostcode != null">
+        cons_postcode = #{record.consPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jiFen != null">
+        ji_fen = #{record.jiFen,jdbcType=BIGINT},
+      </if>
+      <if test="record.carrierId != null">
+        carrier_id = #{record.carrierId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderSum != null">
+        order_sum = #{record.orderSum,jdbcType=BIGINT},
+      </if>
+      <if test="record.invoiceTitle != null">
+        invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceContentId != null">
+        invoice_content_id = #{record.invoiceContentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.invoiceType != null">
+        invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerOrderSum != null">
+        seller_order_sum = #{record.sellerOrderSum,jdbcType=BIGINT},
+      </if>
+      <if test="record.couponEventSum != null">
+        coupon_event_sum = #{record.couponEventSum,jdbcType=BIGINT},
+      </if>
+      <if test="record.dispathId != null">
+        dispath_id = #{record.dispathId,jdbcType=BIGINT},
+      </if>
+      <if test="record.dispathName != null">
+        dispath_name = #{record.dispathName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=BIGINT},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=BIGINT},
+      </if>
+      <if test="record.county != null">
+        county = #{record.county,jdbcType=BIGINT},
+      </if>
+      <if test="record.town != null">
+        town = #{record.town,jdbcType=BIGINT},
+      </if>
+      <if test="record.invoiceState != null">
+        invoice_state = #{record.invoiceState,jdbcType=BIGINT},
+      </if>
+      <if test="record.balanceUsed != null">
+        balance_used = #{record.balanceUsed,jdbcType=BIGINT},
+      </if>
+      <if test="record.consIndex != null">
+        cons_index = #{record.consIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pin != null">
+        pin = #{record.pin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerip != null">
+        customerip = #{record.customerip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerId != null">
+        center_id = #{record.centerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operator != null">
+        operator = #{record.operator,jdbcType=BIGINT},
+      </if>
+      <if test="record.vatInfo != null">
+        vat_info = #{record.vatInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommendDeliveryId != null">
+        recommend_delivery_id = #{record.recommendDeliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.salesPin != null">
+        sales_pin = #{record.salesPin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplier != null">
+        supplier = #{record.supplier,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pop_order_data
+    set id = #{record.id,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      vender_id = #{record.venderId,jdbcType=BIGINT},
+      id_company_branch = #{record.idCompanyBranch,jdbcType=BIGINT},
+      cky2 = #{record.cky2,jdbcType=VARCHAR},
+      payment_type = #{record.paymentType,jdbcType=BIGINT},
+      order_type = #{record.orderType,jdbcType=BIGINT},
+      freight = #{record.freight,jdbcType=BIGINT},
+      paysum_type = #{record.paysumType,jdbcType=BIGINT},
+      state = #{record.state,jdbcType=BIGINT},
+      yn = #{record.yn,jdbcType=BIGINT},
+      order_sign = #{record.orderSign,jdbcType=VARCHAR},
+      pop_send_pay = #{record.popSendPay,jdbcType=VARCHAR},
+      order_create_date = #{record.orderCreateDate,jdbcType=TIMESTAMP},
+      outbound_date = #{record.outboundDate,jdbcType=TIMESTAMP},
+      order_completetime = #{record.orderCompletetime,jdbcType=TIMESTAMP},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      modified = #{record.modified,jdbcType=TIMESTAMP},
+      payment_confirm_time = #{record.paymentConfirmTime,jdbcType=TIMESTAMP},
+      suppose_pay = #{record.supposePay,jdbcType=BIGINT},
+      should_pay = #{record.shouldPay,jdbcType=BIGINT},
+      deligood_type = #{record.deligoodType,jdbcType=BIGINT},
+      id_shipmenttype = #{record.idShipmenttype,jdbcType=BIGINT},
+      area_num = #{record.areaNum,jdbcType=BIGINT},
+      cons_name = #{record.consName,jdbcType=VARCHAR},
+      cons_address = #{record.consAddress,jdbcType=VARCHAR},
+      cons_phone = #{record.consPhone,jdbcType=VARCHAR},
+      cons_mobile_phone = #{record.consMobilePhone,jdbcType=VARCHAR},
+      cons_email = #{record.consEmail,jdbcType=VARCHAR},
+      cons_postcode = #{record.consPostcode,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      ji_fen = #{record.jiFen,jdbcType=BIGINT},
+      carrier_id = #{record.carrierId,jdbcType=VARCHAR},
+      store_id = #{record.storeId,jdbcType=BIGINT},
+      order_sum = #{record.orderSum,jdbcType=BIGINT},
+      invoice_title = #{record.invoiceTitle,jdbcType=VARCHAR},
+      invoice_content_id = #{record.invoiceContentId,jdbcType=BIGINT},
+      invoice_type = #{record.invoiceType,jdbcType=VARCHAR},
+      seller_order_sum = #{record.sellerOrderSum,jdbcType=BIGINT},
+      coupon_event_sum = #{record.couponEventSum,jdbcType=BIGINT},
+      dispath_id = #{record.dispathId,jdbcType=BIGINT},
+      dispath_name = #{record.dispathName,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=BIGINT},
+      city = #{record.city,jdbcType=BIGINT},
+      county = #{record.county,jdbcType=BIGINT},
+      town = #{record.town,jdbcType=BIGINT},
+      invoice_state = #{record.invoiceState,jdbcType=BIGINT},
+      balance_used = #{record.balanceUsed,jdbcType=BIGINT},
+      cons_index = #{record.consIndex,jdbcType=VARCHAR},
+      pin = #{record.pin,jdbcType=VARCHAR},
+      customerip = #{record.customerip,jdbcType=VARCHAR},
+      center_id = #{record.centerId,jdbcType=BIGINT},
+      operator = #{record.operator,jdbcType=BIGINT},
+      vat_info = #{record.vatInfo,jdbcType=VARCHAR},
+      recommend_delivery_id = #{record.recommendDeliveryId,jdbcType=BIGINT},
+      sales_pin = #{record.salesPin,jdbcType=VARCHAR},
+      supplier = #{record.supplier,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.openapi.order.pojo.PopOrderData">
+    update pop_order_data
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="venderId != null">
+        vender_id = #{venderId,jdbcType=BIGINT},
+      </if>
+      <if test="idCompanyBranch != null">
+        id_company_branch = #{idCompanyBranch,jdbcType=BIGINT},
+      </if>
+      <if test="cky2 != null">
+        cky2 = #{cky2,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentType != null">
+        payment_type = #{paymentType,jdbcType=BIGINT},
+      </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=BIGINT},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=BIGINT},
+      </if>
+      <if test="paysumType != null">
+        paysum_type = #{paysumType,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=BIGINT},
+      </if>
+      <if test="yn != null">
+        yn = #{yn,jdbcType=BIGINT},
+      </if>
+      <if test="orderSign != null">
+        order_sign = #{orderSign,jdbcType=VARCHAR},
+      </if>
+      <if test="popSendPay != null">
+        pop_send_pay = #{popSendPay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateDate != null">
+        order_create_date = #{orderCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outboundDate != null">
+        outbound_date = #{outboundDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCompletetime != null">
+        order_completetime = #{orderCompletetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentConfirmTime != null">
+        payment_confirm_time = #{paymentConfirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supposePay != null">
+        suppose_pay = #{supposePay,jdbcType=BIGINT},
+      </if>
+      <if test="shouldPay != null">
+        should_pay = #{shouldPay,jdbcType=BIGINT},
+      </if>
+      <if test="deligoodType != null">
+        deligood_type = #{deligoodType,jdbcType=BIGINT},
+      </if>
+      <if test="idShipmenttype != null">
+        id_shipmenttype = #{idShipmenttype,jdbcType=BIGINT},
+      </if>
+      <if test="areaNum != null">
+        area_num = #{areaNum,jdbcType=BIGINT},
+      </if>
+      <if test="consName != null">
+        cons_name = #{consName,jdbcType=VARCHAR},
+      </if>
+      <if test="consAddress != null">
+        cons_address = #{consAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consPhone != null">
+        cons_phone = #{consPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consMobilePhone != null">
+        cons_mobile_phone = #{consMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="consEmail != null">
+        cons_email = #{consEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="consPostcode != null">
+        cons_postcode = #{consPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="jiFen != null">
+        ji_fen = #{jiFen,jdbcType=BIGINT},
+      </if>
+      <if test="carrierId != null">
+        carrier_id = #{carrierId,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSum != null">
+        order_sum = #{orderSum,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceTitle != null">
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceContentId != null">
+        invoice_content_id = #{invoiceContentId,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceType != null">
+        invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerOrderSum != null">
+        seller_order_sum = #{sellerOrderSum,jdbcType=BIGINT},
+      </if>
+      <if test="couponEventSum != null">
+        coupon_event_sum = #{couponEventSum,jdbcType=BIGINT},
+      </if>
+      <if test="dispathId != null">
+        dispath_id = #{dispathId,jdbcType=BIGINT},
+      </if>
+      <if test="dispathName != null">
+        dispath_name = #{dispathName,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=BIGINT},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=BIGINT},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=BIGINT},
+      </if>
+      <if test="town != null">
+        town = #{town,jdbcType=BIGINT},
+      </if>
+      <if test="invoiceState != null">
+        invoice_state = #{invoiceState,jdbcType=BIGINT},
+      </if>
+      <if test="balanceUsed != null">
+        balance_used = #{balanceUsed,jdbcType=BIGINT},
+      </if>
+      <if test="consIndex != null">
+        cons_index = #{consIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="pin != null">
+        pin = #{pin,jdbcType=VARCHAR},
+      </if>
+      <if test="customerip != null">
+        customerip = #{customerip,jdbcType=VARCHAR},
+      </if>
+      <if test="centerId != null">
+        center_id = #{centerId,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=BIGINT},
+      </if>
+      <if test="vatInfo != null">
+        vat_info = #{vatInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendDeliveryId != null">
+        recommend_delivery_id = #{recommendDeliveryId,jdbcType=BIGINT},
+      </if>
+      <if test="salesPin != null">
+        sales_pin = #{salesPin,jdbcType=VARCHAR},
+      </if>
+      <if test="supplier != null">
+        supplier = #{supplier,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.openapi.order.pojo.PopOrderData">
+    update pop_order_data
+    set order_id = #{orderId,jdbcType=BIGINT},
+      vender_id = #{venderId,jdbcType=BIGINT},
+      id_company_branch = #{idCompanyBranch,jdbcType=BIGINT},
+      cky2 = #{cky2,jdbcType=VARCHAR},
+      payment_type = #{paymentType,jdbcType=BIGINT},
+      order_type = #{orderType,jdbcType=BIGINT},
+      freight = #{freight,jdbcType=BIGINT},
+      paysum_type = #{paysumType,jdbcType=BIGINT},
+      state = #{state,jdbcType=BIGINT},
+      yn = #{yn,jdbcType=BIGINT},
+      order_sign = #{orderSign,jdbcType=VARCHAR},
+      pop_send_pay = #{popSendPay,jdbcType=VARCHAR},
+      order_create_date = #{orderCreateDate,jdbcType=TIMESTAMP},
+      outbound_date = #{outboundDate,jdbcType=TIMESTAMP},
+      order_completetime = #{orderCompletetime,jdbcType=TIMESTAMP},
+      created = #{created,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      payment_confirm_time = #{paymentConfirmTime,jdbcType=TIMESTAMP},
+      suppose_pay = #{supposePay,jdbcType=BIGINT},
+      should_pay = #{shouldPay,jdbcType=BIGINT},
+      deligood_type = #{deligoodType,jdbcType=BIGINT},
+      id_shipmenttype = #{idShipmenttype,jdbcType=BIGINT},
+      area_num = #{areaNum,jdbcType=BIGINT},
+      cons_name = #{consName,jdbcType=VARCHAR},
+      cons_address = #{consAddress,jdbcType=VARCHAR},
+      cons_phone = #{consPhone,jdbcType=VARCHAR},
+      cons_mobile_phone = #{consMobilePhone,jdbcType=VARCHAR},
+      cons_email = #{consEmail,jdbcType=VARCHAR},
+      cons_postcode = #{consPostcode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ji_fen = #{jiFen,jdbcType=BIGINT},
+      carrier_id = #{carrierId,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=BIGINT},
+      order_sum = #{orderSum,jdbcType=BIGINT},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_content_id = #{invoiceContentId,jdbcType=BIGINT},
+      invoice_type = #{invoiceType,jdbcType=VARCHAR},
+      seller_order_sum = #{sellerOrderSum,jdbcType=BIGINT},
+      coupon_event_sum = #{couponEventSum,jdbcType=BIGINT},
+      dispath_id = #{dispathId,jdbcType=BIGINT},
+      dispath_name = #{dispathName,jdbcType=VARCHAR},
+      province = #{province,jdbcType=BIGINT},
+      city = #{city,jdbcType=BIGINT},
+      county = #{county,jdbcType=BIGINT},
+      town = #{town,jdbcType=BIGINT},
+      invoice_state = #{invoiceState,jdbcType=BIGINT},
+      balance_used = #{balanceUsed,jdbcType=BIGINT},
+      cons_index = #{consIndex,jdbcType=VARCHAR},
+      pin = #{pin,jdbcType=VARCHAR},
+      customerip = #{customerip,jdbcType=VARCHAR},
+      center_id = #{centerId,jdbcType=BIGINT},
+      operator = #{operator,jdbcType=BIGINT},
+      vat_info = #{vatInfo,jdbcType=VARCHAR},
+      recommend_delivery_id = #{recommendDeliveryId,jdbcType=BIGINT},
+      sales_pin = #{salesPin,jdbcType=VARCHAR},
+      supplier = #{supplier,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByOrderId" parameterType="long" resultType="java.util.Map">
+    SELECT pop_order_data.*,pop_order_item.*,coupon_detail.* from pop_order_data,pop_order_item,coupon_detail
+    where pop_order_data.order_id=pop_order_item.order_id and pop_order_item.order_id=coupon_detail.order_id
+    and pop_order_data.id=#{id}
+  </select>
+
+</mapper>

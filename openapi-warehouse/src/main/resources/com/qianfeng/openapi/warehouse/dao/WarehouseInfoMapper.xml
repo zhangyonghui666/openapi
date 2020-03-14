@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.openapi.warehouse.dao.WarehouseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.openapi.warehouse.pojo.WarehouseInfo">
+    <id column="w_id" jdbcType="SMALLINT" property="wId" />
+    <result column="warehouse_sn" jdbcType="CHAR" property="warehouseSn" />
+    <result column="warehoust_name" jdbcType="VARCHAR" property="warehoustName" />
+    <result column="warehouse_phone" jdbcType="VARCHAR" property="warehousePhone" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="province" jdbcType="SMALLINT" property="province" />
+    <result column="city" jdbcType="SMALLINT" property="city" />
+    <result column="distrct" jdbcType="SMALLINT" property="distrct" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="warehouse_status" jdbcType="TINYINT" property="warehouseStatus" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    w_id, warehouse_sn, warehoust_name, warehouse_phone, contact, province, city, distrct, 
+    address, warehouse_status, modified_time
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warehouse_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse_info
+    where w_id = #{wId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from warehouse_info
+    where w_id = #{wId,jdbcType=SMALLINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfoExample">
+    delete from warehouse_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfo">
+    insert into warehouse_info (w_id, warehouse_sn, warehoust_name, 
+      warehouse_phone, contact, province, 
+      city, distrct, address, 
+      warehouse_status, modified_time)
+    values (#{wId,jdbcType=SMALLINT}, #{warehouseSn,jdbcType=CHAR}, #{warehoustName,jdbcType=VARCHAR}, 
+      #{warehousePhone,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, #{province,jdbcType=SMALLINT}, 
+      #{city,jdbcType=SMALLINT}, #{distrct,jdbcType=SMALLINT}, #{address,jdbcType=VARCHAR}, 
+      #{warehouseStatus,jdbcType=TINYINT}, #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfo">
+    insert into warehouse_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wId != null">
+        w_id,
+      </if>
+      <if test="warehouseSn != null">
+        warehouse_sn,
+      </if>
+      <if test="warehoustName != null">
+        warehoust_name,
+      </if>
+      <if test="warehousePhone != null">
+        warehouse_phone,
+      </if>
+      <if test="contact != null">
+        contact,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="distrct != null">
+        distrct,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="warehouseStatus != null">
+        warehouse_status,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wId != null">
+        #{wId,jdbcType=SMALLINT},
+      </if>
+      <if test="warehouseSn != null">
+        #{warehouseSn,jdbcType=CHAR},
+      </if>
+      <if test="warehoustName != null">
+        #{warehoustName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehousePhone != null">
+        #{warehousePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=SMALLINT},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=SMALLINT},
+      </if>
+      <if test="distrct != null">
+        #{distrct,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseStatus != null">
+        #{warehouseStatus,jdbcType=TINYINT},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfoExample" resultType="java.lang.Long">
+    select count(*) from warehouse_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update warehouse_info
+    <set>
+      <if test="record.wId != null">
+        w_id = #{record.wId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.warehouseSn != null">
+        warehouse_sn = #{record.warehouseSn,jdbcType=CHAR},
+      </if>
+      <if test="record.warehoustName != null">
+        warehoust_name = #{record.warehoustName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warehousePhone != null">
+        warehouse_phone = #{record.warehousePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contact != null">
+        contact = #{record.contact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=SMALLINT},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=SMALLINT},
+      </if>
+      <if test="record.distrct != null">
+        distrct = #{record.distrct,jdbcType=SMALLINT},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.warehouseStatus != null">
+        warehouse_status = #{record.warehouseStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.modifiedTime != null">
+        modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update warehouse_info
+    set w_id = #{record.wId,jdbcType=SMALLINT},
+      warehouse_sn = #{record.warehouseSn,jdbcType=CHAR},
+      warehoust_name = #{record.warehoustName,jdbcType=VARCHAR},
+      warehouse_phone = #{record.warehousePhone,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=SMALLINT},
+      city = #{record.city,jdbcType=SMALLINT},
+      distrct = #{record.distrct,jdbcType=SMALLINT},
+      address = #{record.address,jdbcType=VARCHAR},
+      warehouse_status = #{record.warehouseStatus,jdbcType=TINYINT},
+      modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfo">
+    update warehouse_info
+    <set>
+      <if test="warehouseSn != null">
+        warehouse_sn = #{warehouseSn,jdbcType=CHAR},
+      </if>
+      <if test="warehoustName != null">
+        warehoust_name = #{warehoustName,jdbcType=VARCHAR},
+      </if>
+      <if test="warehousePhone != null">
+        warehouse_phone = #{warehousePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=SMALLINT},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=SMALLINT},
+      </if>
+      <if test="distrct != null">
+        distrct = #{distrct,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseStatus != null">
+        warehouse_status = #{warehouseStatus,jdbcType=TINYINT},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where w_id = #{wId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseInfo">
+    update warehouse_info
+    set warehouse_sn = #{warehouseSn,jdbcType=CHAR},
+      warehoust_name = #{warehoustName,jdbcType=VARCHAR},
+      warehouse_phone = #{warehousePhone,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      province = #{province,jdbcType=SMALLINT},
+      city = #{city,jdbcType=SMALLINT},
+      distrct = #{distrct,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR},
+      warehouse_status = #{warehouseStatus,jdbcType=TINYINT},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where w_id = #{wId,jdbcType=SMALLINT}
+  </update>
+</mapper>

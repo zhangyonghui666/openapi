@@ -1,0 +1,22 @@
+server:
+  port: 32000
+spring:
+  application:
+    name: openapi-gateway
+  rabbitmq:
+    host: rabbitmq.qfjava.cn
+    port: 8800
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka
+zuul:
+  ignored-services: '*' #忽略所有的服务
+  routes:
+    openapi-cache: '/openapi/**'
+jwtconfig:
+  salt: qishimeiyouyan
+  expirationSeconds: 600
+  login: /login
+  header: Authorization
+  prefix: yangpeng

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.openapi.warehouse.dao.WarehouseProductMapper">
+  <resultMap id="BaseResultMap" type="com.qianfeng.openapi.warehouse.pojo.WarehouseProduct">
+    <id column="wp_id" jdbcType="INTEGER" property="wpId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="w_id" jdbcType="SMALLINT" property="wId" />
+    <result column="current_cnt" jdbcType="INTEGER" property="currentCnt" />
+    <result column="lock_cnt" jdbcType="INTEGER" property="lockCnt" />
+    <result column="in_transit_cnt" jdbcType="INTEGER" property="inTransitCnt" />
+    <result column="average_cost" jdbcType="DECIMAL" property="averageCost" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    wp_id, product_id, w_id, current_cnt, lock_cnt, in_transit_cnt, average_cost, modified_time
+  </sql>
+  <select id="selectByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warehouse_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warehouse_product
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from warehouse_product
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProductExample">
+    delete from warehouse_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProduct">
+    insert into warehouse_product (wp_id, product_id, w_id, 
+      current_cnt, lock_cnt, in_transit_cnt, 
+      average_cost, modified_time)
+    values (#{wpId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{wId,jdbcType=SMALLINT}, 
+      #{currentCnt,jdbcType=INTEGER}, #{lockCnt,jdbcType=INTEGER}, #{inTransitCnt,jdbcType=INTEGER}, 
+      #{averageCost,jdbcType=DECIMAL}, #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProduct">
+    insert into warehouse_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        wp_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="wId != null">
+        w_id,
+      </if>
+      <if test="currentCnt != null">
+        current_cnt,
+      </if>
+      <if test="lockCnt != null">
+        lock_cnt,
+      </if>
+      <if test="inTransitCnt != null">
+        in_transit_cnt,
+      </if>
+      <if test="averageCost != null">
+        average_cost,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wpId != null">
+        #{wpId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="wId != null">
+        #{wId,jdbcType=SMALLINT},
+      </if>
+      <if test="currentCnt != null">
+        #{currentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="lockCnt != null">
+        #{lockCnt,jdbcType=INTEGER},
+      </if>
+      <if test="inTransitCnt != null">
+        #{inTransitCnt,jdbcType=INTEGER},
+      </if>
+      <if test="averageCost != null">
+        #{averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProductExample" resultType="java.lang.Long">
+    select count(*) from warehouse_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update warehouse_product
+    <set>
+      <if test="record.wpId != null">
+        wp_id = #{record.wpId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wId != null">
+        w_id = #{record.wId,jdbcType=SMALLINT},
+      </if>
+      <if test="record.currentCnt != null">
+        current_cnt = #{record.currentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.lockCnt != null">
+        lock_cnt = #{record.lockCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.inTransitCnt != null">
+        in_transit_cnt = #{record.inTransitCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.averageCost != null">
+        average_cost = #{record.averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="record.modifiedTime != null">
+        modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update warehouse_product
+    set wp_id = #{record.wpId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      w_id = #{record.wId,jdbcType=SMALLINT},
+      current_cnt = #{record.currentCnt,jdbcType=INTEGER},
+      lock_cnt = #{record.lockCnt,jdbcType=INTEGER},
+      in_transit_cnt = #{record.inTransitCnt,jdbcType=INTEGER},
+      average_cost = #{record.averageCost,jdbcType=DECIMAL},
+      modified_time = #{record.modifiedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProduct">
+    update warehouse_product
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="wId != null">
+        w_id = #{wId,jdbcType=SMALLINT},
+      </if>
+      <if test="currentCnt != null">
+        current_cnt = #{currentCnt,jdbcType=INTEGER},
+      </if>
+      <if test="lockCnt != null">
+        lock_cnt = #{lockCnt,jdbcType=INTEGER},
+      </if>
+      <if test="inTransitCnt != null">
+        in_transit_cnt = #{inTransitCnt,jdbcType=INTEGER},
+      </if>
+      <if test="averageCost != null">
+        average_cost = #{averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qianfeng.openapi.warehouse.pojo.WarehouseProduct">
+    update warehouse_product
+    set product_id = #{productId,jdbcType=INTEGER},
+      w_id = #{wId,jdbcType=SMALLINT},
+      current_cnt = #{currentCnt,jdbcType=INTEGER},
+      lock_cnt = #{lockCnt,jdbcType=INTEGER},
+      in_transit_cnt = #{inTransitCnt,jdbcType=INTEGER},
+      average_cost = #{averageCost,jdbcType=DECIMAL},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+</mapper>

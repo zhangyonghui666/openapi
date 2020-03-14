@@ -1,0 +1,12 @@
+server:
+  port: 35000
+spring:
+  application:
+    name: openapi-webmaster
+  rabbitmq:
+    host: rabbitmq.qfjava.cn
+    port: 8800
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka

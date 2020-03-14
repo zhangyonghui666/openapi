@@ -1,0 +1,21 @@
+server:
+  port: 39000
+spring:
+  datasource:
+    username: root
+    password: qishimeiyoumima
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql:///tx-manager
+  application:
+    name: tx-manager
+  redis:
+    host: redis.qfjava.cn
+    port: 8400
+    password: redis001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiangge:zdsg@localhost:30000/eureka
+tx-lcn:
+  manager:
+    port: 12345 #这个是协调者对外暴露的端口
